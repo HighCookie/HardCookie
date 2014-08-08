@@ -1,0 +1,1 @@
+if I set the files up correclty you should be able to copy paste into your servers left4dead2 folder

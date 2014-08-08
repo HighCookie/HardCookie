@@ -1,0 +1,18 @@
+"hard12"
+{
+	"base"		"hard12"
+	"maxplayers"    "4"
+
+	"DisplayTitle"	"Hard 12"
+	"ShortDescription"	""
+	"Description"	"12 SI Hard mode"
+
+	"Image"		"maps/any"
+	"Author"	"Standalone"
+
+	convar
+	{
+	
+	}
+}
+

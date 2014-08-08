@@ -1,0 +1,47 @@
+////////////////////////////////////
+////////Hard Cookie ////////////////
+///by High Cookie and Standalone////
+////////////////////////////////////
+We are dumb and dont know how to do stuff, so this is what's wrong
+pls fix
+
+
+//---------
+///Bugs////
+//---------------------------------------------------------------------------------------------------
+[-]custom maps done work
+[-]all survivors 100HP plus pills, but would prefer they start round at 100, not on leaving saferoom
+[-]too many M2's
+[-]tank MVP % incorrect, seemts to scale as if it was a normal tank, 66% (normal tank 4K)]
+[-]playerstats rollover after wipe until successfull attempt
+[-]guns changing in the saferoom, or being put in twice (confoglcompmod vs campaign issue?)
+[-]slient jockies (still)
+[-]no Si on tank, should spawn some SI, at reduced rate
+[-]Need ammo piles in stripper around scout pickups
+[-]finales broken
+[-]pills at the start of the map, and some pills you can't pick up
+[-]boring, in general, its a bit boring
+[-]for now, I kept medpacks in and swap them for pills, which creates a lot of pills, if I remove medpacks
+there is a massive lack of pills.
+[-] plugin load order, might be incorrect or badly ordered, 
+[-] Director changed Pathing still on
+[-] Sometimes AI gets stuck and cant work out how to get to you.
+[-]Rarely, after a wipe, the game will reset with players still dead.
+
+
+//------------------
+///Features I would Like///
+//---------------------------------------------------------------------------------------------------
+[-]A way to compare runs, either:
+
+Timer that counts up as soon as ready up finishes, if you wipe it adds 10mins
+then puts you onto the next map.
+
+OR
+
+calculates health bonus, gives you total score for your run at the end.
+
+[-]Smarter Tanks // AI: attack from more directions, not throwing pointless rocks, etc.
+
+
+
