@@ -1,0 +1,6 @@
+Run with command !match hardcookie
+Gamemode is designated by a coop based vscript(.nut/.nuc), specified in the config's confogl.cfg:
+[-] toxic
+[-] noxious
+
+HUD timer starts upon a survivor leaving the safe area and stops when the saferoom is closed.
