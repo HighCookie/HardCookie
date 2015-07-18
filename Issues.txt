@@ -5,6 +5,8 @@
 We are dumb and dont know how to do stuff, so this is what's wrong
 pls fix
 
+NO ISSUES WHATSOVER
+RETURN 0;
 
 //---------
 ///Bugs////
