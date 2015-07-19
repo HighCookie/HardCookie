@@ -53,6 +53,13 @@ GetEntitySafeRoomDoor(){
 	entStartDoor = door_start;
 }
 
+public OnRoundStart()
+{
+	GiveStartingItems();
+	return Plugin_Continue;
+}
+
+/*
 public Action:L4D_OnFirstSurvivorLeftSafeArea()
 {
 	if (IsInReady())
@@ -63,6 +70,7 @@ public Action:L4D_OnFirstSurvivorLeftSafeArea()
 	GiveStartingItems();
 	return Plugin_Continue;
 }
+*/
 
 public GiveStartingItems()
 {
