@@ -56,6 +56,9 @@ MutationState <-
 {
 	InDebugMode = false
 	TimeBeforeNextHit = 0
+	//Used to display the round time in minutes second format
+	MinutesComponent = 0
+	SecondsComponent = 0
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------
@@ -66,7 +69,8 @@ function EasyLogic::Update::CyleStage()
 	//Only start stage cycle if survivors have left the safe area
 	if ( Director.HasAnySurvivorLeftSafeArea() )
 	{
-        switch (RoundVars.CurrentStage)
+        RoundVars.ShouldRunRoundTimer = true
+		switch (RoundVars.CurrentStage)
 		{
 			case STAGE_SPAWNING_SI:
 				if ( RoundVars.SpecialsSpawned % 12 == 0 ) //Every twelfth SI spawn, take a break
@@ -100,30 +104,38 @@ function EasyLogic::Update::UpdateRoundTime() //increments the total round time
 {
 	if (RoundVars.ShouldRunRoundTimer)
 	{
+		if (RoundVars.RoundTimer == 0)
+		{
+			Utils.SayToAll("Round Timer started!")
+		}
 		RoundVars.RoundTimer++
-		local MinutesComponent = floor(RoundVars.RoundTimer/60)
-		local SecondsComponent = RoundVars.RoundTimer % 60
-		timer.SetValue("minutes", MinutesComponent)
-		timer.SetValue("seconds", SecondsComponent)
-	}
+		SessionState.MinutesComponent = floor(RoundVars.RoundTimer/60)
+		SessionState.SecondsComponent = RoundVars.RoundTimer % 60
+		timer.SetValue("minutes", SessionState.MinutesComponent)
+		timer.SetValue("seconds", SessionState.SecondsComponent)
+	} 
 }
 //-----------------------------------------------------------------------------------------------------------------------------
 // GAME EVENT DIRECTIVES
 //-----------------------------------------------------------------------------------------------------------------------------
 
-//Round Timer start and stop directives
-function Notifications::FirstSurvLeftStartArea::EnableRoundTimer( entity, params )
+//Round Timer stop directives
+function Notifications::OnDoorClosed::AnnounceFinalTime ( entity, checkpoint, params )
 {
-		RoundVars.ShouldRunRoundTimer = true
-		Utils.SayToAll("Timer started!")
+	if (checkpoint == 1) //this is a saferoom door that has been closed
+	{
+		RoundVars.ShouldRunRoundTimer = false
+		Utils.SayToAll("Round Time: "+SessionState.MinutesComponent+"m "+SessionState.SecondsComponent+"s") //total time in minutes and seconds
+	}
 }
+
+/* Keeping this old map transition method in case the above function hooked on 'door closed' events has bugs
 function Notifications::OnMapEnd::EndRoundTimer()
 {
 	RoundVars.ShouldRunRoundTimer = false 
-	local MinuteComponent = floor(RoundVars.RoundTimer/60)
-	local SecondsComponent = RoundVars.RoundTimer % 60
-	Utils.SayToAll("Round Time: "+MinuteComponent+"m "+SecondsComponent+"s") //total time in minutes and seconds
+	Utils.SayToAll("Round Time: "+SessionState.MinutesComponent+"m "+SessionState.SecondsComponent+"s") //total time in minutes and seconds
 }
+*/
 
 //Restoring health to full at the end of each map
 survivors <-
@@ -171,8 +183,7 @@ function Notifications::OnDeath::PlayerInfectedDied( victim, attacker, params )
 {
     if ( !victim.IsPlayerEntityValid() ) {
         return
-    }
-    
+    }    
     if ( victim.GetTeam() == INFECTED )
 	{
 		RoundVars.CurrentAliveSI--
